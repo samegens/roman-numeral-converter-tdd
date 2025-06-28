@@ -22,26 +22,28 @@ struct TestParam
     int expected;
 };
 
-// class RomanNumberConverterParamTest : public ::testing::TestWithParam<FibParam>
-// {
-// protected:
-//     RomanNumberConverter sut;
-// };
+class RomanNumberConverterParamTest : public ::testing::TestWithParam<TestParam>
+{
+protected:
+    RomanNumberConverter sut;
+};
 
-// TEST_P(RomanNumberConverterParamTest, ComputesCorrectRomanNumberConverter)
-// {
-//     auto [input, expected] = GetParam();
-//     EXPECT_EQ(sut.compute(input), expected);
-// }
+TEST_P(RomanNumberConverterParamTest, ComputesCorrectRomanNumberConverter)
+{
+    // Arrange
+    auto [input, expected] = GetParam();
 
-// INSTANTIATE_TEST_SUITE_P(
-//     RomanNumberConverterValues,
-//     RomanNumberConverterParamTest,
-//     ::testing::Values(
-//         TestParam{0, 0},
-//         TestParam{1, 1},
-//         TestParam{6, 8},
-//         TestParam{7, 13},
-//         TestParam{8, 21},
-//         TestParam{9, 34},
-//         TestParam{11, 89}));
+    // Act
+    int actual = sut.ToDecimal(input);
+
+    // Assert
+    EXPECT_EQ(actual, expected);
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    RomanNumberConverterValues,
+    RomanNumberConverterParamTest,
+    ::testing::Values(
+        TestParam{"I", 1}
+    )
+);
