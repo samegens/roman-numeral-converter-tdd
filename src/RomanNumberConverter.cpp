@@ -1,42 +1,26 @@
 #include "RomanNumberConverter.h"
 
+#include "RomanDigitConverter.h"
+
 #include <stdexcept>
 
-int RomanNumberConverter::ToDecimal(const std::string &roman_numeral) const
+int RomanNumberConverter::ToDecimal(const std::string &roman_number) const
 {
-    if (roman_numeral.empty())
+    if (roman_number.empty())
     {
         throw std::invalid_argument("Input cannot be empty");
     }
 
-    if (roman_numeral == "I")
+    int decimal_number = 0;
+    for (const char &roman_digit : roman_number)
     {
-        return 1;
-    }
-    else if (roman_numeral == "V")
-    {
-        return 5;
-    }
-    else if (roman_numeral == "X")
-    {
-        return 10;
-    }
-    else if (roman_numeral == "L")
-    {
-        return 50;
-    }
-    else if (roman_numeral == "C")
-    {
-        return 100;
-    }
-    else if (roman_numeral == "D")
-    {
-        return 500;
-    }
-    else if (roman_numeral == "M")
-    {
-        return 1000;
+        int value = RomanDigitConverter::ToDecimal(roman_digit);
+        if (value == 0)
+        {
+            throw std::invalid_argument("Invalid Roman numeral: " + roman_digit);
+        }
+        decimal_number += value;
     }
 
-    return 0;
+    return decimal_number;
 }

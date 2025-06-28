@@ -1,8 +1,16 @@
 cmake_minimum_required(VERSION 3.15)
 project(convert CXX)
 
-set(sources src/RomanNumberConverter.cpp)
-set(test_sources test/RomanNumberConverterTests.cpp)
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+set(sources
+  src/RomanNumberConverter.cpp
+  src/RomanDigitConverter.cpp)
+set(test_sources
+  test/RomanNumberConverterTests.cpp
+  test/RomanDigitConverterTests.cpp)
 
 # Enable coverage instrumentation for Debug builds
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
