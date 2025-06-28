@@ -28,13 +28,13 @@ void PrintTo(const TestParam& param, std::ostream* os)
     *os << "input: \"" << param.input << "\", expected: " << param.expected;
 }
 
-class RomanNumberConverterParamTest : public ::testing::TestWithParam<TestParam>
+class RomanNumberConverterSingleDigitTest : public ::testing::TestWithParam<TestParam>
 {
 protected:
     RomanNumberConverter sut;
 };
 
-TEST_P(RomanNumberConverterParamTest, ComputesCorrectRomanNumberConverter)
+TEST_P(RomanNumberConverterSingleDigitTest, ComputesCorrectDecimalNumber)
 {
     // Arrange
     auto [input, expected] = GetParam();
@@ -47,8 +47,8 @@ TEST_P(RomanNumberConverterParamTest, ComputesCorrectRomanNumberConverter)
 }
 
 INSTANTIATE_TEST_SUITE_P(
-    RomanNumberConverterValues,
-    RomanNumberConverterParamTest,
+    RomanNumberConverterSingleDigitTestValues,
+    RomanNumberConverterSingleDigitTest,
     ::testing::Values(
         TestParam{"I", 1},
         TestParam{"V", 5},
