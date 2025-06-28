@@ -11,21 +11,30 @@ int RomanNumberConverter::ToDecimal(const std::string &roman_number) const
         throw std::invalid_argument("Input cannot be empty");
     }
 
-    if (roman_number == "IV")
-    {
-        return 4;
-    }
-
     int decimal_number = 0;
-    for (const char &roman_digit : roman_number)
+    for (size_t i = 0; i < roman_number.size(); ++i)
     {
-        int value = RomanDigitConverter::ToDecimal(roman_digit);
-        if (value == 0)
+        int current_value = RomanDigitConverter::ToDecimal(roman_number[i]);
+        if (current_value == 0)
         {
-            throw std::invalid_argument("Invalid Roman numeral: " + roman_digit);
+            throw std::invalid_argument("Invalid Roman numeral: " + std::string(1, roman_number[i]));
         }
-        decimal_number += value;
+        
+        // Look ahead: if current < next, subtract current from next
+        if (i + 1 < roman_number.size())
+        {
+            int next_value = RomanDigitConverter::ToDecimal(roman_number[i + 1]);
+            if (current_value < next_value)
+            {
+                decimal_number += (next_value - current_value);
+                ++i; // Skip next character since we processed it
+                continue;
+            }
+        }
+        
+        // Normal additive case
+        decimal_number += current_value;
     }
-
+    
     return decimal_number;
 }

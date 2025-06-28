@@ -109,6 +109,7 @@ INSTANTIATE_TEST_SUITE_P(
     RomanNumberConverterSubtractiveDigitTestValues,
     RomanNumberConverterSubtractiveDigitTest,
     ::testing::Values(
-        RomanNumberConverterTestParam{"IV", 4}
+        RomanNumberConverterTestParam{"IV", 4},
+        RomanNumberConverterTestParam{"IX", 9}
     )
 );
