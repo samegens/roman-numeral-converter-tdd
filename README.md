@@ -2,4 +2,9 @@
 
 ## Usage
 
+Open in Visual Studio Code in devcontainer, then
+
+```bash
+./build.sh
+```
 
