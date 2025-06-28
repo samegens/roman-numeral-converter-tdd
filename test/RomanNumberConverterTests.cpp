@@ -86,3 +86,29 @@ INSTANTIATE_TEST_SUITE_P(
         RomanNumberConverterTestParam{"MDCLXVI", 1666}
     )
 );
+
+class RomanNumberConverterSubtractiveDigitTest : public ::testing::TestWithParam<RomanNumberConverterTestParam>
+{
+protected:
+    RomanNumberConverter sut;
+};
+
+TEST_P(RomanNumberConverterSubtractiveDigitTest, ComputesCorrectDecimalNumber)
+{
+    // Arrange
+    auto [input, expected] = GetParam();
+
+    // Act
+    int actual = sut.ToDecimal(input);
+
+    // Assert
+    EXPECT_EQ(actual, expected);
+}
+
+INSTANTIATE_TEST_SUITE_P(
+    RomanNumberConverterSubtractiveDigitTestValues,
+    RomanNumberConverterSubtractiveDigitTest,
+    ::testing::Values(
+        RomanNumberConverterTestParam{"IV", 4}
+    )
+);
