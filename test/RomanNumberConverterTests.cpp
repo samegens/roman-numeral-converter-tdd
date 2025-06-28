@@ -82,6 +82,7 @@ INSTANTIATE_TEST_SUITE_P(
     RomanNumberConverterMultipleAdditiveDigitTestValues,
     RomanNumberConverterMultipleAdditiveDigitTest,
     ::testing::Values(
-        RomanNumberConverterTestParam{"II", 2}
+        RomanNumberConverterTestParam{"II", 2},
+        RomanNumberConverterTestParam{"MDCLXVI", 1666}
     )
 );
