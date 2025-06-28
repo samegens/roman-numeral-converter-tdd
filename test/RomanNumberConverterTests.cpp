@@ -22,6 +22,12 @@ struct TestParam
     int expected;
 };
 
+// Overload the PrintTo function to provide a custom output format for the test parameters.
+void PrintTo(const TestParam& param, std::ostream* os)
+{
+    *os << "input: \"" << param.input << "\", expected: " << param.expected;
+}
+
 class RomanNumberConverterParamTest : public ::testing::TestWithParam<TestParam>
 {
 protected:
@@ -44,6 +50,12 @@ INSTANTIATE_TEST_SUITE_P(
     RomanNumberConverterValues,
     RomanNumberConverterParamTest,
     ::testing::Values(
-        TestParam{"I", 1}
+        TestParam{"I", 1},
+        TestParam{"V", 5},
+        TestParam{"X", 10},
+        TestParam{"L", 50},
+        TestParam{"C", 100},
+        TestParam{"D", 500},
+        TestParam{"M", 1000}
     )
 );
