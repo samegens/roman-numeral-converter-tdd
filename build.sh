@@ -2,7 +2,7 @@
 
 set -xeuo pipefail
 
-conan build .
+conan build . -s build_type=Debug --build=missing
 
 # Running the tests outside of the conan build system will show better output.
-build/Release/unit_tests
+build/Debug/unit_tests
