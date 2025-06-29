@@ -3,6 +3,7 @@
 #include "RomanDigitConverter.h"
 
 #include <stdexcept>
+#include "RomanSegment.h"
 
 using namespace std;
 
@@ -27,16 +28,18 @@ int RomanNumberConverter::ProcessNextRomanSegment()
 {
     if (IsSubtractionCase(_romanNumber, _currentRomanDigitIndex))
     {
-        int current = GetDigitValue(_romanNumber[_currentRomanDigitIndex]);
-        int next = GetDigitValue(_romanNumber[_currentRomanDigitIndex + 1]);
+        auto romanSegment = RomanSegment(
+            _romanNumber[_currentRomanDigitIndex],
+            _romanNumber[_currentRomanDigitIndex + 1]
+        );
         _currentRomanDigitIndex += 2;
-        return next - current;
+        return romanSegment.ToDecimalNumber();
     }
     else
     {
-        int current = GetDigitValue(_romanNumber[_currentRomanDigitIndex]);
+        auto romanSegment = RomanSegment(_romanNumber[_currentRomanDigitIndex]);
         _currentRomanDigitIndex += 1;
-        return current;
+        return romanSegment.ToDecimalNumber();
     }
 }
 
