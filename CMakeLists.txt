@@ -7,12 +7,10 @@ endif()
 
 set(sources
   src/RomanNumberConverter.cpp
-  src/RomanDigitConverter.cpp
   src/RomanSegment.cpp
   src/RomanDigit.cpp)
 set(test_sources
   test/RomanNumberConverterTests.cpp
-  test/RomanDigitConverterTests.cpp
   test/RomanSegmentTests.cpp
   test/RomanDigitTests.cpp)
 

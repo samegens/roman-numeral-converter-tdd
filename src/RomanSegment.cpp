@@ -1,7 +1,5 @@
 #include "RomanSegment.h"
 
-#include "RomanDigitConverter.h"
-
 RomanSegment::RomanSegment(const RomanDigit &leftDigit, const RomanDigit &rightDigit) : _leftRomanDigit(leftDigit),
                                                                                         _rightRomanDigit(rightDigit)
 {

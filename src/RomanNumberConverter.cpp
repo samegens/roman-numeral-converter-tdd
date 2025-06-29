@@ -1,7 +1,5 @@
 #include "RomanNumberConverter.h"
 
-#include "RomanDigitConverter.h"
-
 #include <stdexcept>
 #include "RomanSegment.h"
 
@@ -16,7 +14,7 @@ int RomanNumberConverter::ToDecimal(const string &romanNumber)
 
     _romanDigits.assign(romanNumber.begin(), romanNumber.end());
     int decimalNumber = 0;
-    
+
     for (_currentRomanDigitIndex = 0; _currentRomanDigitIndex < romanNumber.size(); )
     {
         RomanSegment romanSegment = GetNextRomanSegment();
