@@ -1,6 +1,9 @@
 #pragma once
 
+#include "RomanDigit.h"
+
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -10,13 +13,14 @@ class RomanNumberConverter
 public:
     RomanNumberConverter() = default;
 
-    int ToDecimal(const string &romanNumeral);
+    int ToDecimal(const string &romanNumber);
 
 private:
     int ProcessNextRomanSegment();
     int GetDigitValue(char digit) const;
-    bool IsSubtractionCase(const string &romanNumber, size_t index) const;
+    bool IsSubtractionCase(size_t index) const;
 
+    vector<RomanDigit> _romanDigits;
     string _romanNumber;
     size_t _currentRomanDigitIndex = 0;
 };
