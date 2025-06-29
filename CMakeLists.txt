@@ -7,10 +7,12 @@ endif()
 
 set(sources
   src/RomanNumberConverter.cpp
-  src/RomanDigitConverter.cpp)
+  src/RomanDigitConverter.cpp
+  src/RomanSegment.cpp)
 set(test_sources
   test/RomanNumberConverterTests.cpp
-  test/RomanDigitConverterTests.cpp)
+  test/RomanDigitConverterTests.cpp
+  test/RomanSegmentTests.cpp)
 
 # Enable coverage instrumentation for Debug builds
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
