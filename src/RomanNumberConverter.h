@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RomanDigit.h"
+#include "RomanSegment.h"
 
 #include <string>
 #include <vector>
@@ -16,8 +17,8 @@ public:
     int ToDecimal(const string &romanNumber);
 
 private:
-    int ProcessNextRomanSegment();
-    bool IsSubtractionCase(size_t index) const;
+    RomanSegment GetNextRomanSegment();
+    bool IsSubtractionSegment(size_t index) const;
 
     vector<RomanDigit> _romanDigits;
     size_t _currentRomanDigitIndex = 0;

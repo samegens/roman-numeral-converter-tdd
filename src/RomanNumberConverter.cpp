@@ -16,34 +16,36 @@ int RomanNumberConverter::ToDecimal(const string &romanNumber)
 
     _romanDigits.assign(romanNumber.begin(), romanNumber.end());
     int decimalNumber = 0;
+    
     for (_currentRomanDigitIndex = 0; _currentRomanDigitIndex < romanNumber.size(); )
     {
-        decimalNumber += ProcessNextRomanSegment();
+        RomanSegment romanSegment = GetNextRomanSegment();
+        decimalNumber += romanSegment.ToDecimalNumber();
     }
     
     return decimalNumber;
 }
 
-int RomanNumberConverter::ProcessNextRomanSegment()
+RomanSegment RomanNumberConverter::GetNextRomanSegment()
 {
-    if (IsSubtractionCase(_currentRomanDigitIndex))
+    if (IsSubtractionSegment(_currentRomanDigitIndex))
     {
         auto romanSegment = RomanSegment(
             _romanDigits[_currentRomanDigitIndex],
             _romanDigits[_currentRomanDigitIndex + 1]
         );
         _currentRomanDigitIndex += 2;
-        return romanSegment.ToDecimalNumber();
+        return romanSegment;
     }
     else
     {
         auto romanSegment = RomanSegment(_romanDigits[_currentRomanDigitIndex]);
         _currentRomanDigitIndex += 1;
-        return romanSegment.ToDecimalNumber();
+        return romanSegment;
     }
 }
 
-bool RomanNumberConverter::IsSubtractionCase(size_t index) const
+bool RomanNumberConverter::IsSubtractionSegment(size_t index) const
 {
     const int next_index = index + 1;
     if (next_index >= _romanDigits.size())
