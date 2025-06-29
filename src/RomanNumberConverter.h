@@ -17,10 +17,8 @@ public:
 
 private:
     int ProcessNextRomanSegment();
-    int GetDigitValue(char digit) const;
     bool IsSubtractionCase(size_t index) const;
 
     vector<RomanDigit> _romanDigits;
-    string _romanNumber;
     size_t _currentRomanDigitIndex = 0;
 };

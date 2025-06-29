@@ -14,7 +14,6 @@ int RomanNumberConverter::ToDecimal(const string &romanNumber)
         throw std::invalid_argument("Input cannot be empty");
     }
 
-    _romanNumber = romanNumber;
     _romanDigits.assign(romanNumber.begin(), romanNumber.end());
     int decimalNumber = 0;
     for (_currentRomanDigitIndex = 0; _currentRomanDigitIndex < romanNumber.size(); )
@@ -30,15 +29,15 @@ int RomanNumberConverter::ProcessNextRomanSegment()
     if (IsSubtractionCase(_currentRomanDigitIndex))
     {
         auto romanSegment = RomanSegment(
-            _romanNumber[_currentRomanDigitIndex],
-            _romanNumber[_currentRomanDigitIndex + 1]
+            _romanDigits[_currentRomanDigitIndex],
+            _romanDigits[_currentRomanDigitIndex + 1]
         );
         _currentRomanDigitIndex += 2;
         return romanSegment.ToDecimalNumber();
     }
     else
     {
-        auto romanSegment = RomanSegment(_romanNumber[_currentRomanDigitIndex]);
+        auto romanSegment = RomanSegment(_romanDigits[_currentRomanDigitIndex]);
         _currentRomanDigitIndex += 1;
         return romanSegment.ToDecimalNumber();
     }
@@ -54,14 +53,4 @@ bool RomanNumberConverter::IsSubtractionCase(size_t index) const
     RomanDigit next = _romanDigits[next_index];
     
     return current < next;
-}
-
-int RomanNumberConverter::GetDigitValue(char digit) const
-{
-    int value = RomanDigitConverter::ToDecimal(digit);
-    if (value == 0)
-    {
-        throw std::invalid_argument("Invalid Roman numeral: " + string(1, digit));
-    }
-    return value;
 }

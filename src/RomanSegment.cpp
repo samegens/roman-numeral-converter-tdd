@@ -2,19 +2,27 @@
 
 #include "RomanDigitConverter.h"
 
+RomanSegment::RomanSegment(const RomanDigit &leftDigit, const RomanDigit &rightDigit) : _leftRomanDigit(leftDigit),
+                                                                                        _rightRomanDigit(rightDigit)
+{
+}
+
+RomanSegment::RomanSegment(const RomanDigit &leftDigit) : _leftRomanDigit(leftDigit),
+                                                          _rightRomanDigit(std::nullopt)
+{
+}
+
 int RomanSegment::ToDecimalNumber() const
 {
-    int leftDecimalNumber = RomanDigitConverter::ToDecimal(_leftRomanDigit);
-    int rightDecimalNumber = RomanDigitConverter::ToDecimal(_rightRomanDigit);
     if (IsSubtractivePair())
     {
-        return rightDecimalNumber - leftDecimalNumber;
+        return _rightRomanDigit.value().ToDecimalNumber() - _leftRomanDigit.ToDecimalNumber();
     }
 
-    return leftDecimalNumber;
+    return _leftRomanDigit.ToDecimalNumber();
 }
 
 bool RomanSegment::IsSubtractivePair() const
 {
-    return _rightRomanDigit > 0;
+    return _rightRomanDigit.has_value();;
 }
